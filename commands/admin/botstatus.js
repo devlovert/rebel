@@ -1,0 +1,2 @@
+// Show current bot settings.
+module.exports = { name: 'botstatus', async execute({ reply, db }) { reply(`🤖 *BOT CONFIG STATUS*\nName: ${db.botName}\nOwner: ${db.ownerName}\nMode: ${db.mode}\nPrefix: ${db.prefix}`); } };

@@ -1,0 +1,2 @@
+// Mention every participant in the group.
+module.exports = { name: 'tagall', groupOnly: true, adminOnly: true, async execute({ sock, m, reply, db }) { try { const meta = await sock.groupMetadata(m.key.remoteJid); const mentions = meta.participants.map(p => p.id); let text = `📢 *TAG ALL BY ${db.botName}*\n\n`; mentions.forEach(id => { text += `@${id.split('@')[0]} `; }); sock.sendMessage(m.key.remoteJid, { text, mentions }, { quoted: m }); } catch (e) { reply('Failed to tag all.'); } } };

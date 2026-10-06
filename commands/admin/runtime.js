@@ -1,0 +1,2 @@
+// Show the process runtime.
+module.exports = { name: 'runtime', async execute({ reply }) { const uptime = process.uptime(); const hours = Math.floor(uptime / 3600); const minutes = Math.floor((uptime % 3600) / 60); const seconds = Math.floor(uptime % 60); reply(`⏱️ *RUNTIME*\n${hours}h ${minutes}m ${seconds}s`); } };

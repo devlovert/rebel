@@ -1,0 +1,2 @@
+// Add a phone number to the group.
+module.exports = { name: 'add', groupOnly: true, adminOnly: true, async execute({ sock, m, reply, q }) { if (!q) return reply('Example: .add 92340XXXXXX'); const num = q.replace(/[^0-9]/g, '') + '@s.whatsapp.net'; await sock.groupParticipantsUpdate(m.key.remoteJid, [num], 'add'); reply(`Added ${q}`); } };

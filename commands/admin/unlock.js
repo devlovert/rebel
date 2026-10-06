@@ -1,0 +1,2 @@
+// Unlock the group for all participants.
+module.exports = { name: 'unlock', groupOnly: true, adminOnly: true, async execute({ sock, m, reply }) { await sock.groupSettingUpdate(m.key.remoteJid, 'not_announcement'); reply('Group unlocked.'); } };

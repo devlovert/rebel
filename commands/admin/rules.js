@@ -1,0 +1,2 @@
+// Show the group rules.
+module.exports = { name: 'rules', async execute({ reply, db }) { reply(`📜 *RULES FOR ${db.botName}*\n1. No spamming commands.\n2. Respect group admins and members.\n3. Avoid sharing malicious links.\n4. Follow group guidelines.`); } };

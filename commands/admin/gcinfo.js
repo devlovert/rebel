@@ -1,0 +1,2 @@
+// Show group metadata.
+module.exports = { name: 'gcinfo', groupOnly: true, adminOnly: true, async execute({ sock, m, reply }) { const gMeta = await sock.groupMetadata(m.key.remoteJid); reply(`Name: ${gMeta.subject}\nMembers: ${gMeta.participants.length}\nCreated: ` + new Date(gMeta.creation * 1000).toDateString()); } };

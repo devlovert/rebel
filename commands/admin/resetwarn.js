@@ -1,0 +1,3 @@
+// Reset all or one participant's warnings.
+const { getTargetJid, getWarnList, saveWarnList } = require('./shared');
+module.exports = { name: 'resetwarn', groupOnly: true, adminOnly: true, async execute({ m, reply }) { const target = getTargetJid(m); const groupId = m.key.remoteJid; const warns = getWarnList(); if (!target) { warns[groupId] = {}; saveWarnList(warns); return reply('🔄 All group warnings have been reset to zero!'); } if (warns[groupId]) { const cleanTarget = String(target).split('@')[0]; Object.keys(warns[groupId]).forEach(k => { if (String(k).split('@')[0] === cleanTarget) delete warns[groupId][k]; }); saveWarnList(warns); } reply('🔄 User warnings have been reset to zero!'); } };

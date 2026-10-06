@@ -1,0 +1,2 @@
+// Lock the group so only admins can message.
+module.exports = { name: 'lock', groupOnly: true, adminOnly: true, async execute({ sock, m, reply }) { await sock.groupSettingUpdate(m.key.remoteJid, 'announcement'); reply('Group locked.'); } };

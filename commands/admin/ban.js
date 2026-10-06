@@ -1,0 +1,3 @@
+// Message-ban a mentioned or quoted participant.
+const { getTargetJid, getBannedList, saveBannedList } = require('./shared');
+module.exports = { name: 'ban', groupOnly: true, adminOnly: true, async execute({ m, reply }) { const target = getTargetJid(m); if (!target) return reply('Quote or mention user to message-ban!'); const groupId = m.key.remoteJid; const bannedList = getBannedList(); if (!bannedList[groupId]) bannedList[groupId] = []; const cleanTarget = String(target).split('@')[0]; if (!bannedList[groupId].some(b => String(b).split('@')[0] === cleanTarget)) { bannedList[groupId].push(target); saveBannedList(bannedList); } reply('User message-banned! User group mein rahega par uska har message auto-delete hoga.'); } };

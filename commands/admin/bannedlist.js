@@ -1,0 +1,3 @@
+// List message-banned participants.
+const { getBannedList } = require('./shared');
+module.exports = { name: 'bannedlist', groupOnly: true, adminOnly: true, async execute({ sock, m, reply }) { const groupId = m.key.remoteJid; const users = getBannedList()[groupId] || []; if (users.length === 0) return reply('📋 Is group mein koi message-banned user nahi hai.'); const mentions = users.map(user => String(user)); const text = `🚫 *BANNED USERS*\n\n${mentions.map(user => `• @${user.split('@')[0]}`).join('\n')}`; await sock.sendMessage(groupId, { text, mentions }, { quoted: m }); } };

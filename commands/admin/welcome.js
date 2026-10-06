@@ -1,0 +1,3 @@
+// Send a saved or custom welcome to a participant.
+const { getTargetJid, getWelcomeSettings } = require('./shared');
+module.exports = { name: 'welcome', groupOnly: true, adminOnly: true, async execute({ sock, m, reply, q }) { const groupId = m.key.remoteJid; const target = getTargetJid(m); if (!target) return reply('Tag or quote a user to welcome (.welcome @user)'); const savedMsg = getWelcomeSettings()[groupId] || 'Welcome to the group! Make sure to follow community rules. 🔥'; const customText = q ? q : savedMsg; await sock.sendMessage(groupId, { text: `✨ *WELCOME* ✨\n\n@${target.split('@')[0]} - ${customText}`, mentions: [target] }, { quoted: m }); } };

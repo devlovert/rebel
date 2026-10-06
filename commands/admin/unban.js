@@ -1,0 +1,3 @@
+// Remove a participant from the message-ban list.
+const { getTargetJid, getBannedList, saveBannedList } = require('./shared');
+module.exports = { name: 'unban', groupOnly: true, adminOnly: true, async execute({ m, reply }) { const target = getTargetJid(m); if (!target) return reply('Quote or mention user to unban!'); const groupId = m.key.remoteJid; const bannedList = getBannedList(); if (bannedList[groupId]) { const cleanTarget = String(target).split('@')[0]; bannedList[groupId] = bannedList[groupId].filter(id => String(id).split('@')[0] !== cleanTarget); saveBannedList(bannedList); } reply('User unbanned! Ab wo message kar sakega.'); } };

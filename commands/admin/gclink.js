@@ -1,0 +1,2 @@
+// Show the group invite link.
+module.exports = { name: 'gclink', groupOnly: true, adminOnly: true, async execute({ sock, m, reply }) { const code = await sock.groupInviteCode(m.key.remoteJid); reply(`https://chat.whatsapp.com/${code}`); } };

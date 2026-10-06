@@ -1,0 +1,3 @@
+// List current participant warnings.
+const { getWarnList } = require('./shared');
+module.exports = { name: 'warnlist', groupOnly: true, adminOnly: true, async execute({ sock, m, reply }) { const groupId = m.key.remoteJid; const entries = Object.entries(getWarnList()[groupId] || {}); if (entries.length === 0) return reply('📋 No users have warnings in this group.'); let text = `📋 *WARNING LIST*\n\n`; const mentions = []; entries.forEach(([user, count]) => { text += `• @${user.split('@')[0]} : *${count}/3* warnings\n`; mentions.push(user); }); sock.sendMessage(groupId, { text, mentions }, { quoted: m }); } };
